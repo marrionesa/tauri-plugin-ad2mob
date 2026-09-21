@@ -2914,8 +2914,8 @@ checksum = "7da8b5736845d9f2fcb837ea5d9e2628564b3b043a70948a3f0b778838c5fb4f"
 
 [[package]]
 name = "swift-rs"
-version = "1.0.7"
-source = "git+https://github.com/Brendonovich/swift-rs.git?rev=e0a7b1f#e0a7b1f41d9d18db571e9454d6dfa0db4e21cad3"
+version = "1.0.8"
+source = "git+ssh://git@github.com/marrionesa/swift-rs-framework-fix.git?rev=520ee150187e787eb3488733d50dd2c2743ad65f#520ee150187e787eb3488733d50dd2c2743ad65f"
 dependencies = [
  "base64 0.21.7",
  "serde",
@@ -3160,8 +3160,7 @@ dependencies = [
 [[package]]
 name = "tauri-plugin"
 version = "2.6.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "74be5dd4bed9afbd145e5716b5fa2ec28cbc29c34ffa61c258c9273d896c8020"
+source = "git+ssh://git@github.com/marrionesa/tauri-plugin-framework-support.git?rev=f8c625cb39449b585f96264b447308786084c857#f8c625cb39449b585f96264b447308786084c857"
 dependencies = [
  "anyhow",
  "glob",
@@ -3239,8 +3238,7 @@ dependencies = [
 [[package]]
 name = "tauri-utils"
 version = "2.9.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3e176a18e67764923c4f1ce66f25ae4abe5f688384d5eb1a0fa6c77f3d90f887"
+source = "git+ssh://git@github.com/marrionesa/tauri-utils-framework-fix.git?rev=f19fe580d58c35df101e74a174c5d71aa083211e#f19fe580d58c35df101e74a174c5d71aa083211e"
 dependencies = [
  "anyhow",
  "brotli",
@@ -3267,7 +3265,7 @@ dependencies = [
  "serde_with",
  "swift-rs",
  "thiserror 2.0.20",
- "toml 1.1.6+spec-1.1.0",
+ "toml 0.9.12+spec-1.1.0",
  "url",
  "urlpattern",
  "uuid",
