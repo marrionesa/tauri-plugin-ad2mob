@@ -13,7 +13,27 @@ readme = "README.md"
 keywords = ["tauri", "plugin", "admob", "android", "ios"]
 categories = ["gui", "web-programming"]
 links = "tauri-plugin-ad2mob"
-exclude = ["/examples", "/ad2mob-website", "/guest-js", "/tests/ts", "/scripts", "/docs", "/dist-js", "/dist-cjs", "/dist-esm", "/node_modules", "/target", "/.github", "package.json", "tsconfig*.json", "vitest.config.ts", "pnpm-lock.yaml", "bun.lock", "CHANGELOG.md", ".gitignore"]
+exclude = [
+    "/examples",
+    "/ad2mob-website",
+    "/guest-js",
+    "/tests/ts",
+    "/scripts",
+    "/docs",
+    "/dist-js",
+    "/dist-cjs",
+    "/dist-esm",
+    "/node_modules",
+    "/target",
+    "/.github",
+    "package.json",
+    "tsconfig*.json",
+    "vitest.config.ts",
+    "pnpm-lock.yaml",
+    "bun.lock",
+    "CHANGELOG.md",
+    ".gitignore"
+]
 
 [package.metadata.docs.rs]
 targets = ["x86_64-linux-android"]
@@ -26,9 +46,6 @@ android = { level = "full", notes = "" }
 ios = { level = "full", notes = "" }
 
 [dependencies]
-# `default-features = false` keeps this crate free of the desktop WebView
-# runtime (GTK/WebKit system libraries). Cargo features are additive, so apps
-# that already use `tauri` with its default features are unaffected.
 tauri = { version = "2", default-features = false }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
@@ -36,7 +53,6 @@ thiserror = "2"
 log = "0.4"
 
 [target.'cfg(target_os = "ios")'.dependencies]
-# `register_ios_plugin` is gated behind the `wry` feature in Tauri itself.
 tauri = { version = "2", features = ["wry"] }
 
 [build-dependencies]
@@ -46,10 +62,11 @@ tauri-plugin = { version = "2", features = ["build"] }
 name = "tauri_plugin_ad2mob"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
-# The example app is a standalone crate (it uses the full Tauri runtime) and
-# must not become a member of this crate's implicit workspace.
 [workspace]
 exclude = ["examples/admob-demo/src-tauri"]
 
 [features]
 default = []
+
+[patch.crates-io]
+swift-rs = { git = "https://github.com/Brendonovich/swift-rs.git", rev = "e0a7b1f" }
