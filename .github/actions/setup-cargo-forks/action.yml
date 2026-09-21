@@ -22,13 +22,17 @@ runs:
   steps:
     - name: Install deploy keys and SSH config
       shell: bash
+      env:
+        SSH_DEPLOY_KEY_SWIFT_RS: ${{ inputs.ssh_deploy_key_swift_rs }}
+        SSH_DEPLOY_KEY_TAURI_UTILS: ${{ inputs.ssh_deploy_key_tauri_utils }}
+        SSH_DEPLOY_KEY_TAURI_PLUGIN: ${{ inputs.ssh_deploy_key_tauri_plugin }}
       run: |
         mkdir -p ~/.ssh
         chmod 700 ~/.ssh
 
-        printf '%s\n' "${{ inputs.ssh_deploy_key_swift_rs }}" > ~/.ssh/id_ed25519_swift_rs
-        printf '%s\n' "${{ inputs.ssh_deploy_key_tauri_utils }}" > ~/.ssh/id_ed25519_tauri_utils
-        printf '%s\n' "${{ inputs.ssh_deploy_key_tauri_plugin }}" > ~/.ssh/id_ed25519_tauri_plugin
+        printf '%s\n' "$SSH_DEPLOY_KEY_SWIFT_RS" > ~/.ssh/id_ed25519_swift_rs
+        printf '%s\n' "$SSH_DEPLOY_KEY_TAURI_UTILS" > ~/.ssh/id_ed25519_tauri_utils
+        printf '%s\n' "$SSH_DEPLOY_KEY_TAURI_PLUGIN" > ~/.ssh/id_ed25519_tauri_plugin
         chmod 600 ~/.ssh/id_ed25519_swift_rs ~/.ssh/id_ed25519_tauri_utils ~/.ssh/id_ed25519_tauri_plugin
 
         # Official GitHub host keys (https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints)
