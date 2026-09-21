@@ -141,7 +141,7 @@ jobs:
         working-directory: examples/admob-demo/src-tauri/gen/android
         run: ./gradlew :tauri-plugin-ad2mob:testDebugUnitTest
 
-   # ---------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------
   # iOS
   # ---------------------------------------------------------------------------
   ios:
@@ -186,45 +186,50 @@ jobs:
       - name: Install Tauri CLI
         run: cargo install tauri-cli --version '^2' --locked
 
-      - name: Build example app for the iOS simulator (compiles the plugin Swift)
-        working-directory: examples/admob-demo/src-tauri
+      - name: Inspect SwiftPM Google frameworks
         run: |
-          cargo tauri ios init
-
-          echo "===== SwiftPM package manifest ====="
-          cat ios/Package.swift
-
-          echo "===== Swift version ====="
+          echo "===== Swift ====="
           swift --version
 
-          echo "===== Xcode version ====="
+          echo "===== Xcode ====="
           xcodebuild -version
 
-          echo "===== Resolving SwiftPM dependencies ====="
+          echo "===== Plugin Package.swift ====="
+          cat ios/Package.swift
+
+          echo "===== Resolve plugin Swift package ====="
           cd ios
           swift package resolve
 
-          echo "===== SwiftPM dependency tree ====="
+          echo "===== SwiftPM dependencies ====="
           swift package show-dependencies
 
-          echo "===== SwiftPM Google framework locations ====="
+          echo "===== SwiftPM .build directories ====="
+          find .build -type d | sort
+
+          echo "===== GoogleMobileAds artifacts ====="
           find .build -type d \
             \( \
               -name "GoogleMobileAds.framework" \
               -o \
-              -name "GoogleUserMessagingPlatform.framework" \
-              -o \
               -name "GoogleMobileAds.xcframework" \
+            \) \
+            -print || true
+
+          echo "===== GoogleUserMessagingPlatform artifacts ====="
+          find .build -type d \
+            \( \
+              -name "GoogleUserMessagingPlatform.framework" \
               -o \
               -name "GoogleUserMessagingPlatform.xcframework" \
             \) \
-            -print \
-            || true
+            -print || true
 
-          echo "===== SwiftPM artifact tree ====="
-          find .build/artifacts -maxdepth 8 -print 2>/dev/null | sort || true
+          echo "===== SwiftPM artifacts ====="
+          find .build/artifacts -maxdepth 10 -print 2>/dev/null | sort || true
 
-          cd ../..
-
-          echo "===== Building Tauri iOS simulator ====="
+      - name: Build example app for the iOS simulator (compiles the plugin Swift)
+        working-directory: examples/admob-demo/src-tauri
+        run: |
+          cargo tauri ios init
           cargo tauri ios build --target aarch64-sim

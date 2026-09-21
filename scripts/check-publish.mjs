@@ -117,7 +117,7 @@ check('docs.rs metadata builds the Android target (mobile plugin needs it)', () 
   cargo.includes('[package.metadata.docs.rs]') && cargo.includes('x86_64-linux-android') ? true : 'docs.rs target config missing',
 )
 check('crate excludes dev artifacts (node_modules, dist, TS tests, guest-js, scripts)', () => {
-  const m = cargo.match(/^exclude\s*=\s*\[(.*?)\]/m)
+  const m = cargo.match(/^exclude\s*=\s*\[([\s\S]*?)\]/m)
   const list = m ? m[1] : ''
   const required = ['/node_modules', '/dist-cjs', '/dist-esm', '/tests/ts', '/guest-js', '/scripts', '/examples']
   const missing = required.filter((x) => !list.includes(x))
