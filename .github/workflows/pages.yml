@@ -1,0 +1,84 @@
+name: Deploy documentation website
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - "ad2mob-website/**"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+env:
+  NEXT_TELEMETRY_DISABLED: 1
+
+jobs:
+  build:
+    name: Build static website
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ad2mob-website
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build static export
+        run: bun run build
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ad2mob-website/out
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  update-repository-metadata:
+    name: Update repository Homepage and description
+    needs: deploy
+    runs-on: ubuntu-latest
+    env:
+      REPO_SETTINGS_TOKEN: ${{ secrets.REPO_SETTINGS_TOKEN }}
+    steps:
+      - name: Point repository metadata to the published docs
+        env:
+          GH_TOKEN: ${{ env.REPO_SETTINGS_TOKEN }}
+          PAGES_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+          REPOSITORY_DESCRIPTION: Google AdMob (Mobile Ads) integration for Tauri v2 apps on Android and iOS.
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "REPO_SETTINGS_TOKEN is not configured; skipping repository metadata update."
+            exit 0
+          fi
+          gh api --method PATCH "repos/${{ github.repository }}" \
+            -f homepage="$PAGES_URL" \
+            -f description="$REPOSITORY_DESCRIPTION"

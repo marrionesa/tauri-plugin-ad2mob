@@ -1,0 +1,42 @@
+"$schema" = "schemas/schema.json"
+
+[default]
+description = """
+This permission set configures the full AdMob surface of the plugin.
+
+#### Granted Permissions
+
+All commands are allowed by default: initialization, configuration, consent
+(UMP), App Tracking Transparency (iOS), interstitial, rewarded and native
+banner ads, plus the plugin event listeners used by `AdMob.on()`.
+
+Ads are not a security-sensitive surface: the plugin never exposes filesystem,
+network or device capabilities to the webview, so granting everything by
+default keeps the consumer setup to a single `ad2mob:default` entry.
+"""
+permissions = [
+  "allow-initialize",
+  "allow-configure",
+  "allow-is-supported",
+  "allow-get-status",
+  "allow-request-consent",
+  "allow-get-consent-status",
+  "allow-request-tracking-authorization",
+  "allow-get-tracking-authorization-status",
+  "allow-load-interstitial",
+  "allow-show-interstitial",
+  "allow-is-interstitial-ready",
+  "allow-destroy-interstitial",
+  "allow-load-rewarded",
+  "allow-show-rewarded",
+  "allow-is-rewarded-ready",
+  "allow-destroy-rewarded",
+  "allow-show-banner",
+  "allow-hide-banner",
+  "allow-is-banner-visible",
+  "allow-set-banner-position",
+  "allow-destroy-banner",
+  "allow-destroy",
+  "allow-register-listener",
+  "allow-remove-listener",
+]

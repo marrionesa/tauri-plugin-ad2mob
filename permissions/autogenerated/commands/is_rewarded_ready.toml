@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-is-rewarded-ready"
+description = "Enables the is_rewarded_ready command without any pre-configured scope."
+commands.allow = ["is_rewarded_ready"]
+
+[[permission]]
+identifier = "deny-is-rewarded-ready"
+description = "Denies the is_rewarded_ready command without any pre-configured scope."
+commands.deny = ["is_rewarded_ready"]

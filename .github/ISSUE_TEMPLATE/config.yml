@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions & usage help
+    url: https://github.com/marrionesa/tauri-plugin-ad2mob/discussions
+    about: Ask "how do I…" questions here — issues are for reproducible bugs only.
+  - name: Google AdMob help
+    url: https://support.google.com/admob
+    about: Account, policy and payout questions go to Google.

@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-get-consent-status"
+description = "Enables the get_consent_status command without any pre-configured scope."
+commands.allow = ["get_consent_status"]
+
+[[permission]]
+identifier = "deny-get-consent-status"
+description = "Denies the get_consent_status command without any pre-configured scope."
+commands.deny = ["get_consent_status"]

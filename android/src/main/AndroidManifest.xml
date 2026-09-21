@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  tauri-plugin-ad2mob.
+
+  Deliberately empty: the AdMob App ID meta-data
+  (com.google.android.gms.ads.APPLICATION_ID) is owned by the consuming app's
+  manifest, and every permission the Google Mobile Ads SDK needs is declared
+  by the SDK's own merged manifest.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" />

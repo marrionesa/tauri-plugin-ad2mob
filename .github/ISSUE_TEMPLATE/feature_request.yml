@@ -1,0 +1,28 @@
+name: ✨ Feature request
+description: Suggest an improvement or a new capability for the plugin.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / motivation
+      description: What are you trying to achieve? What blocks you today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: The API shape you'd expect, e.g. new methods, events or config.
+      render: ts
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pre-flight
+      options:
+        - label: I searched existing issues and discussions first.
+        - label: This is about the plugin, not about Google AdMob itself (policies, payments, account issues).

@@ -1,0 +1,63 @@
+name: 🐛 Bug report
+description: Report a problem with tauri-plugin-ad2mob on Android, iOS or desktop.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report an issue! Please fill out every
+        section — incomplete reports take much longer to fix.
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What happened, and what did you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal reproduction
+      description: Code (Rust + TS) and steps to reproduce. Test-mode (`isTesting: true`) reproductions are strongly preferred.
+      placeholder: |
+        await AdMob.initialize({ isTesting: true })
+        await AdMob.showBanner({ position: 'bottom', size: 'adaptive' })
+        // → AdMobError: ...
+      render: ts
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options: [Android, iOS, Desktop (Windows), Desktop (macOS), Desktop (Linux)]
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS / device version
+      placeholder: 'Android 15 · Pixel 8 emulator / iOS 18.2 · iPhone 16'
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Plugin & Tauri versions
+      placeholder: 'tauri-plugin-ad2mob 0.1.0 · tauri 2.x · @tauri-apps/api 2.x'
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      description: adb logcat / Xcode console output around the failure. Code blocks, please.
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pre-flight
+      options:
+        - label: I searched existing issues and discussions first.
+        - label: This happens with the latest published version (or `main`).
+        - label: I am using `isTesting: true` or official Google test IDs.

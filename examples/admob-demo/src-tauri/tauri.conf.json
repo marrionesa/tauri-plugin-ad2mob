@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "admob-demo",
+  "version": "0.1.0",
+  "identifier": "com.example.admobdemo",
+  "build": {
+    "frontendDist": "../www"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "tauri-plugin-ad2mob demo",
+        "width": 480,
+        "height": 880,
+        "minWidth": 360,
+        "minHeight": 640,
+        "resizable": true
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "plugins": {
+    "ad2mob": {
+      "isTesting": true,
+      "debug": true,
+      "automaticallyRequestConsent": true,
+      "requestTrackingAuthorization": false
+    }
+  }
+}

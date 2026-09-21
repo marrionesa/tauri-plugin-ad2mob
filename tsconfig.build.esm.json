@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "ES2022",
+    "moduleResolution": "Bundler",
+    "outDir": "dist-esm",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "types": []
+  },
+  "include": ["guest-js"]
+}

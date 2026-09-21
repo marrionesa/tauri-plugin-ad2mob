@@ -1,0 +1,64 @@
+{
+  "name": "tauri-plugin-ad2mob",
+  "version": "0.1.0",
+  "description": "Google AdMob (Mobile Ads) integration for Tauri v2 apps on Android and iOS",
+  "license": "MIT OR Apache-2.0",
+  "author": "marrionesa",
+  "type": "commonjs",
+  "sideEffects": false,
+  "main": "./dist-cjs/index.js",
+  "module": "./dist-esm/index.js",
+  "types": "./dist-esm/index.d.ts",
+  "exports": {
+    "types": "./dist-esm/index.d.ts",
+    "import": "./dist-esm/index.js",
+    "require": "./dist-cjs/index.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.cjs.json && tsc -p tsconfig.build.esm.json && node -e \"require('fs').writeFileSync('dist-esm/package.json', JSON.stringify({ type: 'module' }, null, 2) + '\\n')\"",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "contract": "node scripts/check-contract.mjs",
+    "publish:check": "node scripts/check-publish.mjs",
+    "verify": "bash scripts/verify.sh"
+  },
+  "files": [
+    "dist-cjs",
+    "dist-esm",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "LICENSE-MIT",
+    "LICENSE-APACHE"
+  ],
+  "dependencies": {
+    "@tauri-apps/api": "^2.0.0"
+  },
+  "peerDependencies": {
+    "@tauri-apps/api": "^2.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  },
+  "keywords": [
+    "tauri",
+    "tauri-plugin",
+    "admob",
+    "ads",
+    "google",
+    "android",
+    "ios"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marrionesa/tauri-plugin-ad2mob.git"
+  },
+  "bugs": {
+    "url": "https://github.com/marrionesa/tauri-plugin-ad2mob/issues"
+  },
+  "homepage": "https://github.com/marrionesa/tauri-plugin-ad2mob#readme",
+  "engines": {
+    "node": ">=18"
+  }
+}

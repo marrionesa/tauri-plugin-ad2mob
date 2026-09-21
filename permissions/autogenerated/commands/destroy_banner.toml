@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-destroy-banner"
+description = "Enables the destroy_banner command without any pre-configured scope."
+commands.allow = ["destroy_banner"]
+
+[[permission]]
+identifier = "deny-destroy-banner"
+description = "Denies the destroy_banner command without any pre-configured scope."
+commands.deny = ["destroy_banner"]

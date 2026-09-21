@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-is-interstitial-ready"
+description = "Enables the is_interstitial_ready command without any pre-configured scope."
+commands.allow = ["is_interstitial_ready"]
+
+[[permission]]
+identifier = "deny-is-interstitial-ready"
+description = "Denies the is_interstitial_ready command without any pre-configured scope."
+commands.deny = ["is_interstitial_ready"]
