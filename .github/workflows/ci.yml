@@ -33,7 +33,19 @@ jobs:
         uses: Swatinem/rust-cache@v2
         with:
           workspaces: |
+
             .
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install plugin dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Install website dependencies
+        working-directory: ad2mob-website
+        run: bun install --frozen-lockfile
 
       - name: Install system libraries (Tauri Linux prerequisites)
         run: |
