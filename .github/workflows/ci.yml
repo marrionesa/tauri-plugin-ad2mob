@@ -160,7 +160,6 @@ jobs:
       - name: Select Xcode 16
         run: |
           XCODE_PATH="$(find /Applications -maxdepth 1 -type d -name 'Xcode_16*.app' | sort -V | tail -n 1)"
-
           if [ -z "$XCODE_PATH" ]; then
             echo "ERROR: No Xcode 16 installation found."
             echo "Installed Xcode versions:"
@@ -186,7 +185,13 @@ jobs:
       - name: Install Tauri CLI
         run: cargo install tauri-cli --version '^2' --locked
 
+      - name: Initialize Tauri iOS project
+        working-directory: examples/admob-demo/src-tauri
+        run: |
+          cargo tauri ios init
+
       - name: Inspect SwiftPM Google frameworks
+        working-directory: examples/admob-demo/src-tauri
         run: |
           echo "===== Swift ====="
           swift --version
@@ -195,10 +200,14 @@ jobs:
           xcodebuild -version
 
           echo "===== Plugin Package.swift ====="
-          cat ios/Package.swift
+          cat ../../../ios/Package.swift
+
+          echo "===== Tauri generated API ====="
+          ls -la .tauri/
+          ls -la .tauri/tauri-api/
 
           echo "===== Resolve plugin Swift package ====="
-          cd ios
+          cd ../../../ios
           swift package resolve
 
           echo "===== SwiftPM dependencies ====="
@@ -228,8 +237,7 @@ jobs:
           echo "===== SwiftPM artifacts ====="
           find .build/artifacts -maxdepth 10 -print 2>/dev/null | sort || true
 
-      - name: Build example app for the iOS simulator (compiles the plugin Swift)
+      - name: Build example app for the iOS simulator
         working-directory: examples/admob-demo/src-tauri
         run: |
-          cargo tauri ios init
           cargo tauri ios build --target aarch64-sim
