@@ -146,7 +146,7 @@ jobs:
   # ---------------------------------------------------------------------------
   ios:
     name: iOS · simulator build
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
 
@@ -156,6 +156,26 @@ jobs:
           ssh_deploy_key_swift_rs: ${{ secrets.SSH_DEPLOY_KEY_SWIFT_RS }}
           ssh_deploy_key_tauri_utils: ${{ secrets.SSH_DEPLOY_KEY_TAURI_UTILS }}
           ssh_deploy_key_tauri_plugin: ${{ secrets.SSH_DEPLOY_KEY_TAURI_PLUGIN }}
+
+      - name: Select Xcode 16
+        run: |
+          XCODE_PATH="$(find /Applications -maxdepth 1 -type d -name 'Xcode_16*.app' | sort -V | tail -n 1)"
+
+          if [ -z "$XCODE_PATH" ]; then
+            echo "ERROR: No Xcode 16 installation found."
+            echo "Installed Xcode versions:"
+            find /Applications -maxdepth 1 -type d -name 'Xcode*.app' -print | sort
+            exit 1
+          fi
+
+          echo "Using: $XCODE_PATH"
+          sudo xcode-select -s "$XCODE_PATH/Contents/Developer"
+
+          echo "Selected Xcode:"
+          xcodebuild -version
+
+          echo "Developer directory:"
+          xcode-select -p
 
       - name: Install Rust iOS targets
         run: |
