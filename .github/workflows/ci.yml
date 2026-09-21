@@ -141,7 +141,7 @@ jobs:
         working-directory: examples/admob-demo/src-tauri/gen/android
         run: ./gradlew :tauri-plugin-ad2mob:testDebugUnitTest
 
-  # ---------------------------------------------------------------------------
+   # ---------------------------------------------------------------------------
   # iOS
   # ---------------------------------------------------------------------------
   ios:
@@ -190,4 +190,41 @@ jobs:
         working-directory: examples/admob-demo/src-tauri
         run: |
           cargo tauri ios init
+
+          echo "===== SwiftPM package manifest ====="
+          cat ios/Package.swift
+
+          echo "===== Swift version ====="
+          swift --version
+
+          echo "===== Xcode version ====="
+          xcodebuild -version
+
+          echo "===== Resolving SwiftPM dependencies ====="
+          cd ios
+          swift package resolve
+
+          echo "===== SwiftPM dependency tree ====="
+          swift package show-dependencies
+
+          echo "===== SwiftPM Google framework locations ====="
+          find .build -type d \
+            \( \
+              -name "GoogleMobileAds.framework" \
+              -o \
+              -name "GoogleUserMessagingPlatform.framework" \
+              -o \
+              -name "GoogleMobileAds.xcframework" \
+              -o \
+              -name "GoogleUserMessagingPlatform.xcframework" \
+            \) \
+            -print \
+            || true
+
+          echo "===== SwiftPM artifact tree ====="
+          find .build/artifacts -maxdepth 8 -print 2>/dev/null | sort || true
+
+          cd ../..
+
+          echo "===== Building Tauri iOS simulator ====="
           cargo tauri ios build --target aarch64-sim
