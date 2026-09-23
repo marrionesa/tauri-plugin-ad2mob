@@ -67,7 +67,7 @@ export function SiteHeader() {
             tauri-plugin-ad2mob
           </span>
           <span className="hidden rounded-full border border-amber-500/40 bg-amber-500/10 px-2 py-0.5 font-mono text-[11px] font-medium text-amber-700 dark:text-amber-400 sm:inline">
-            v0.1.0
+            v0.2.0
           </span>
         </a>
 

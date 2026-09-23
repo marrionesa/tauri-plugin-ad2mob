@@ -51,8 +51,8 @@ the crate exactly as crates.io will).
 
 ```bash
 git add -A
-git commit -m "release: v0.1.0"
-git tag v0.1.0
+git commit -m "release: v0.2.0"
+git tag v0.2.0
 git push origin main --follow-tags
 ```
 

@@ -125,7 +125,7 @@ export function Hero() {
               Tauri v2 · Android &amp; iOS
             </span>
             <span className="rounded-full border border-border bg-background px-3 py-1 font-mono text-xs text-muted-foreground">
-              v0.1.0
+              v0.2.0
             </span>
           </div>
 

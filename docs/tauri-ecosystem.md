@@ -28,7 +28,7 @@ The Tauri team reviews community plugins against the same bar as the official
 
 Nothing gets listed anywhere without the packages being live:
 
-1. Follow `docs/publishing.md` → tag `v0.1.0` → CI publishes.
+1. Follow `docs/publishing.md` → tag `v0.2.0` → CI publishes.
 2. Confirm both registries render correctly:
    - crates.io page (README rendered, docs.rs link green)
    - npm page (README rendered, correct repo link)

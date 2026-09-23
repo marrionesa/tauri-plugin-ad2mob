@@ -243,6 +243,12 @@ function Step4() {
         </SubSection>
 
         <SubSection id="instalacion-ios" title="iOS">
+          <Callout variant="warn" title="⚠️ iOS — en desarrollo activo">
+            Las instrucciones siguientes describen la integración final y son
+            correctas, pero iOS todavía no está disponible: su job de CI
+            permanece temporalmente muteado mientras se resuelve un problema
+            de empaquetado SwiftPM.
+          </Callout>
           <p className="mb-3 text-sm leading-relaxed text-muted-foreground">
             Añade estas claves al <Code>Info.plist</Code> (vía{" "}
             <Code>gen/apple</Code> o Xcode). Los frameworks GoogleMobileAds 13.x

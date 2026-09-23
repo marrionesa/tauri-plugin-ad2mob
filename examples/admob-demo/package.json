@@ -1,6 +1,6 @@
 {
   "name": "admob-demo",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Example app for tauri-plugin-ad2mob (Tauri v2, Android/iOS)",
   "scripts": {

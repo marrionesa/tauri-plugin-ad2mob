@@ -1,6 +1,6 @@
 [package]
 name = "tauri-plugin-ad2mob"
-version = "0.1.0"
+version = "0.2.0"
 description = "Google AdMob (Mobile Ads) integration for Tauri v2 apps on Android and iOS"
 authors = ["marrionesa"]
 license = "MIT OR Apache-2.0"
