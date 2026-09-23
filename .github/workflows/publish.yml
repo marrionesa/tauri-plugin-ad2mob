@@ -24,6 +24,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # verify.sh also runs the TypeScript build/typecheck/tests, which need
+      # the JS toolchain and node_modules (local tsc/vitest from the lockfile).
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
       - name: Setup private cargo dependency forks
         uses: ./.github/actions/setup-cargo-forks
         with:
