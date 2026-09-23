@@ -42,7 +42,6 @@ yarn-error.log*
 next-env.d.ts
 local-*
 
-
 *.log
 dev.log
 dev.out.log
