@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "tauri-plugin-admob",
+      "name": "tauri-plugin-ad2mob",
       "dependencies": {
         "@tauri-apps/api": "^2.0.0",
       },

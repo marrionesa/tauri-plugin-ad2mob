@@ -32,7 +32,14 @@ fn main() {
     let result = tauri_plugin::Builder::new(COMMANDS)
         .android_path("android")
         .ios_path("ios")
-        .ios_frameworks(["GoogleMobileAds", "GoogleUserMessagingPlatform"])
+        // TODO(iOS): `ios_frameworks` only exists in the private fork patched
+        // in `[patch.crates-io]` — upstream `tauri-plugin` (crates.io) has no
+        // such method, and `cargo publish` builds the packaged crate WITHOUT
+        // applying `[patch]`, so keeping this line breaks the crates.io build
+        // with E0599. The Google frameworks are already declared in
+        // `ios/Package.swift` via SwiftPM. Re-enable when the fork's approach
+        // lands in a crates.io release of `tauri-plugin`.
+        // .ios_frameworks(["GoogleMobileAds", "GoogleUserMessagingPlatform"])
         .try_build();
 
     // when building documentation for Android the plugin build result is always Err() and is irrelevant to the crate documentation build

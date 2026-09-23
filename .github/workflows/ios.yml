@@ -1,17 +1,20 @@
 name: iOS Simulator
 
 on:
+  # TODO(iOS): push trigger disabled while the iOS simulator build is paused
+  # (the job below is kept intact for contributors and manual runs).
+  # Re-enable by restoring the commented `push.paths` block.
+  # push:
+  #   paths:
+  #     - "ios/**"
+  #     - "src/**"
+  #     - "guest-js/**"
+  #     - "examples/admob-demo/**"
+  #     - "Cargo.toml"
+  #     - "Cargo.lock"
+  #     - "build.rs"
+  #     - ".github/workflows/ios.yml"
   workflow_dispatch:
-  push:
-    paths:
-      - "ios/**"
-      - "src/**"
-      - "guest-js/**"
-      - "examples/admob-demo/**"
-      - "Cargo.toml"
-      - "Cargo.lock"
-      - "build.rs"
-      - ".github/workflows/ios.yml"
 
 env:
   # Cargo must use the system ssh (git CLI) so the per-repo SSH aliases

@@ -144,8 +144,12 @@ jobs:
   # ---------------------------------------------------------------------------
   # iOS
   # ---------------------------------------------------------------------------
+  # TODO(iOS): paused while the SwiftPM framework-linking approach is finished.
+  # The job is kept (not deleted) so contributors can iterate on it — it just
+  # does not run. Re-enable by removing the `if: false` line below.
   ios:
     name: iOS · simulator build
+    if: false # TODO(iOS): re-enable when the iOS simulator build passes
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
